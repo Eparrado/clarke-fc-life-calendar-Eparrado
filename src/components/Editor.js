@@ -3,10 +3,36 @@ import { Link } from 'react-router-dom';
 import CalendarIcon from '../icons/CalendarIcon';
 
 class Editor extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      hidden: true,
+      message: ''
+    };
+  }
 
+  handleSelectShowMessage = () => {
+    this.setState ({
+      hidden: !this.state.hidden
+    });
+  }
+
+  handleSelectHideMessage = () => {
+    this.setState ({
+      hidden: true
+    });
+  }
+
+  handleChangeMessage = (event) => {
+    this.setState({
+      message: event.target.value
+    });
+  }
   render() {
     const date = new Date();
     const today = (date.getDate() + "/0" + (date.getMonth() + 1) + "/" + date.getFullYear());
+
+    const showMessage = this.state.hidden ? 'hidden' : '';
 
     return (
       <div className="editor-container">
@@ -17,16 +43,16 @@ class Editor extends Component {
           </div>
         <h1>Estado</h1>
           <div className="mood-container">
-            <input type="radio" name="mood" value=":)"/>
+            <input type="radio" name="mood" value=":)" onClick={this.handleSelectShowMessage}/>
             <label className="margin-right">:)</label>
 
-            <input type="radio" name="mood" value=":)" />
+            <input type="radio" name="mood" value=":(" onClick={this.handleSelectHideMessage}/>
             <label>:(</label>
           </div>
 
-          <div className="message-container hidden">
+          <div className={`${showMessage}`}>
             <h2>Mensaje</h2>
-            <input type="text" placeholder="¿Por qué ha sido un buen día?" value="" />
+            <input type="text" className="message-container" placeholder="¿Por qué ha sido un buen día?"value={this.state.message} onChange={this.handleChangeMessage}/>
           </div>
 
           <div className="submit-container">

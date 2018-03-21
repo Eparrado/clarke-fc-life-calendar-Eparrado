@@ -44,6 +44,10 @@ h1, h2 {margin: 0;}
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
+
+  @media all and (min-width: 768px){
+    width: 100%;
+  }
 }
 
 .date {
@@ -61,6 +65,23 @@ h1, h2 {margin: 0;}
 /*Estilos checklist*/
 .mood-container{
     margin-bottom: var(--spacer);
+}
+
+/*Estilos mensaje*/
+.message-container {
+  margin-bottom: var(--spacer);
+  background-color: var(--c-mediumdark);
+  padding: 5px 15px;
+  border-radius: 2px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  -webkit-appearance: none;
+  -moz-appearance:    none;
+  appearance:         none;
+  border: none;
+
+  @media all and (min-width: 768px){
+    width: 100%;
+  }
 }
 
 /*Estilos botones*/
