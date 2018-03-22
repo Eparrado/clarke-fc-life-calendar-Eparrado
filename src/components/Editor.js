@@ -28,9 +28,22 @@ class Editor extends Component {
       message: event.target.value
     });
   }
+
   render() {
-    const date = new Date();
-    const today = (date.getDate() + "/0" + (date.getMonth() + 1) + "/" + date.getFullYear());
+    let date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+
+    if(day < 10) {
+      day = '0' + day;
+    }
+
+    if(month < 10) {
+      month = '0' + month;
+    }
+
+    let today = day + '/' + month + '/' + year;
 
     const showMessage = this.state.hidden ? 'hidden' : '';
 
@@ -43,16 +56,16 @@ class Editor extends Component {
           </div>
         <h1>Estado</h1>
           <div className="mood-container">
-            <input type="radio" name="mood" value=":)" onClick={this.handleSelectShowMessage}/>
+            <input type="radio" name="mood" value=":)" className="pointer" onClick={this.handleSelectShowMessage}/>
             <label className="margin-right">:)</label>
 
-            <input type="radio" name="mood" value=":(" onClick={this.handleSelectHideMessage}/>
+            <input type="radio" name="mood" value=":(" className="pointer" onClick={this.handleSelectHideMessage}/>
             <label>:(</label>
           </div>
 
           <div className={`${showMessage}`}>
             <h2>Mensaje</h2>
-            <input type="text" className="message-container" placeholder="¿Por qué ha sido un buen día?"value={this.state.message} onChange={this.handleChangeMessage}/>
+            <input type="text" className="message-container" placeholder="¿Por qué ha sido un buen día?" value={this.state.message} onChange={this.handleChangeMessage}/>
           </div>
 
           <div className="submit-container">
@@ -68,6 +81,3 @@ class Editor extends Component {
 }
 
 export default Editor;
-
-
-// <Link to='/'>Guardar</Link>

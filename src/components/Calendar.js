@@ -6,12 +6,13 @@ class Calendar extends Component {
 
   render() {
     return (
-    
+
       <div>
           <header className="header">
-            <Link to='/editor'>+</Link>
+            <Link to='/editor' className="header-content">+</Link>
           </header>
           <main className="smile-calendar">
+            
           </main>
       </div>
     )
