@@ -50,23 +50,23 @@ class Editor extends Component {
     return (
       <div className="editor-container">
         <h1>Fecha</h1>
-          <div className="date-container">
+          <form className="date-container">
             <input className="date" type="text" value={`${today}`} disabled="disabled"/>
             <CalendarIcon />
-          </div>
+          </form>
         <h1>Estado</h1>
-          <div className="mood-container">
-            <input type="radio" name="mood" value=":)" className="pointer" onClick={this.handleSelectShowMessage}/>
+          <form className="mood-container">
+            <input type="radio" name="mood" value=":)" className="input-radio pointer" onClick={this.handleSelectShowMessage}/>
             <label className="margin-right">:)</label>
 
-            <input type="radio" name="mood" value=":(" className="pointer" onClick={this.handleSelectHideMessage}/>
+            <input type="radio" name="mood" value=":(" className="input-radio pointer" onClick={this.handleSelectHideMessage}/>
             <label>:(</label>
-          </div>
+          </form>
 
-          <div className={`${showMessage}`}>
+          <form className={`${showMessage}`}>
             <h2>Mensaje</h2>
             <input type="text" className="message-container" placeholder="¿Por qué ha sido un buen día?" value={this.state.message} onChange={this.handleChangeMessage}/>
-          </div>
+          </form>
 
           <div className="submit-container">
             <Link to='/' className="submit-button"><button className="send-button" type="submit">Guardar</button></Link>
