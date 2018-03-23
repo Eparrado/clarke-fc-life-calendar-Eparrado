@@ -50,10 +50,10 @@ class Editor extends Component {
           </form>
         <h1>Estado</h1>
           <form className="mood-container">
-            <input type="radio" name="mood" value=":)" className="input-radio pointer" onClick={this.handleSelectShowMessage} onChange={this.props.handleChangeMood}/>
+            <input type="radio" name="mood" value=":)" className="input-radio pointer" onClick={this.handleSelectShowMessage} onChange={this.props.handleChangeMoodHappy}/>
             <label className="margin-right">:)</label>
 
-            <input type="radio" name="mood" value=":(" className="input-radio pointer" onClick={this.handleSelectHideMessage} onChange={this.props.handleChangeMood}/>
+            <input type="radio" name="mood" value=":(" className="input-radio pointer" onClick={this.handleSelectHideMessage} onChange={this.props.handleChangeMoodSad}/>
             <label>:(</label>
           </form>
 

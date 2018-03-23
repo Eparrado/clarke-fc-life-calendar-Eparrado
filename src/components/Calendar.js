@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Today from './Today';
 
 
 class Calendar extends Component {
 
 
   render() {
+    const userData = this.props.userData;
 
     return (
       <div>
@@ -14,9 +16,14 @@ class Calendar extends Component {
           </header>
           <main className="smile-calendar">
             <ul className="mood-list">
-              <li className="today-mood good-day">
-                <p className="mood-value"></p>
-              </li>
+              {userData.map((data, index) =>
+                <Today
+                key={index}
+                mood={data.mood}
+                background={data.background}
+                />
+            )}
+
             </ul>
           </main>
       </div>

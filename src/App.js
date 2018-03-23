@@ -10,15 +10,23 @@ class App extends Component {
     this.state = {
       message: '',
       mood: '',
+      background: '',
       todayMoodJson : []
     }
     this.handleClickRenderMood = this.handleClickRenderMood.bind(this);
   }
 
-  handleChangeMood = (event) => {
-    let mood = document.querySelector('input[name="mood"]:checked').value;
+  handleChangeMoodHappy = (event) => {
     this.setState({
-      mood: event.target.value
+      mood: event.target.value,
+      background: 'good-day'
+    });
+  }
+
+  handleChangeMoodSad = (event) => {
+    this.setState({
+      mood: event.target.value,
+      background: 'bad-day'
     });
   }
 
@@ -31,21 +39,34 @@ class App extends Component {
   handleClickRenderMood = () => {
     const message = this.state.message;
     const mood = this.state.mood;
+    const background = this.state.background;
 
     this.setState({
-      todayMoodJson : [...this.state.todayMoodJson, {message, mood}]
+      todayMoodJson : [...this.state.todayMoodJson, {message, mood, background}]
     })
   }
+
+  componentWillMount(nextProps, nextState) {
+   localStorage.getItem('todayMoodJson') && this.setState({
+     todayMoodJson: JSON.parse(localStorage.getItem('todayMoodJson'))
+   });
+ }
+
+ componentWillUpdate(nextProps, nextState){
+   localStorage.setItem('todayMoodJson', JSON.stringify(nextState.todayMoodJson));
+ }
+
 
   render() {
     return (
       <Switch>
         <Route exact path='/' render = {(props) =>
           <Calendar
-           renderMood={this.handleClickRenderMood}/>} />
+           userData={this.state.todayMoodJson}/>} />
         <Route path='/editor' render = {(props) =>
           <Editor
-            handleChangeMood={this.handleChangeMood}
+            handleChangeMoodHappy={this.handleChangeMoodHappy}
+            handleChangeMoodSad={this.handleChangeMoodSad}
             message={this.state.mesage}
             handleChangeMessage={this.handleChangeMessage}
             handleClickRenderMood={this.handleClickRenderMood}/>} />
